@@ -1,5 +1,6 @@
 # Python Object-Oriented Programming
-# Go to this webpage:
+import datetime
+
 class Employee:
 
     num_of_employees = 0
@@ -23,12 +24,21 @@ class Employee:
     def set_raise_amount(cls, amount):
         cls.raise_amount = amount
 
+    @classmethod
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split('-')
+        return cls(first, last, pay)
+
+    @staticmethod
+    def is_workday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        return True
+
 
 emp_1 = Employee('Corey', 'Shafer', 50000)
 emp_2 = Employee('Test', 'User', 60000)
 
-Employee.set_raise_amount(1.05)
+my_date = datetime.date(2016, 7, 11)
 
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
+print(Employee.is_workday(my_date))
